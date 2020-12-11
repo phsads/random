@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>phsads's garage</title>
+</head>
+<body>
+<button onclick="e1("e")">Encryption 1</button>
+<button onclick="e1("d")">Decryption 1</button>
+</body>
+<script>
+function e1(a) {
+    alert(enc(prompt("Enter the text you wish to encrypt.",""),a))
+}
+function enc(t,type) {
+    var x
+    var y = []
+    if (type === "e") {
+        for (x in t) {
+            var z = t.charCodeAt(x).toString()
+            if (z.length === 3) {
+                y.push(z[0])
+                y.push(z[1])
+                y.push(z[2])
+            } else if (z.length === 2) {
+                y.push("0")
+                y.push(z[0])
+                y.push(z[1])
+            } else {
+                y.push("0")
+                y.push("0")
+                y.push(z[0])
+            }
+        }
+        var w
+        var b = ""
+        for (w in y) {
+            if (parseInt(y[w])+parseInt(w[w.length-1]) >= 10) {
+                b += (parseInt(y[w])+parseInt(w[w.length-1])).toString()[1]
+            } else {
+                b += (parseInt(y[w])+parseInt(w[w.length-1])).toString()[0]
+            }
+        } 
+        return b
+    } else if (type === "d") {
+        if (typeof t === "string") {
+            var c = t.split("")
+            var d
+            var e = []
+            for (d in c) {
+                if (parseInt(c[d])-parseInt(d[d.length-1]) < 0) {
+                    e.push((parseInt(c[d])-parseInt(d[d.length-1])+10).toString())
+                } else {
+                    e.push((parseInt(c[d])-parseInt(d[d.length-1])).toString())
+                }
+            }
+            var f = []
+            var g
+            for (g in e) {
+                if (f.length === 0 || f[f.length-1].length === 3) {
+                    f.push(e[g])
+                } else if (f[f.length-1].length < 3) {
+                    f[f.length-1] += e[g]
+                }
+            }
+            var h
+            var i = ""
+            for (h in f) {
+                i += String.fromCharCode(parseInt(f[h]))
+            }
+            return i
+        } else {
+            console.warn = "wrong input"
+        }
+    }
+}
+//kinda inefficient
+</script>
+</html>

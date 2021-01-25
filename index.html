@@ -75,9 +75,10 @@ function enc(t,type) {
 }
 //kinda inefficient
 function crash() {
-    while (1>0) {
-        console.log("crash")
-        crash()
+    var text = String.fromCharCode(Math.round(Math.random()*10000))
+    while (true) {
+        text = text += String.fromCharCode(Math.round(Math.random()*10000)
+        console.log(text)
     }
 }
 </script>

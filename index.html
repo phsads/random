@@ -5,10 +5,11 @@
 <body>
 <button onclick="e1('e')">Encryption 1</button>
 <button onclick="e1('d')">Decryption 1</button>
+<button onclick="crash()">Crash the site!</button>
 </body>
 <script>
 function e1(a) {
-    prompt(Here is you encoded/decoded message:,enc(prompt("Enter the text you wish to encrypt/decrypt.",""),a))
+    prompt("Here is you encoded/decoded message:",enc(prompt("Enter the text you wish to encrypt/decrypt.",""),a))
 }
 function enc(t,type) {
     var x
@@ -73,5 +74,11 @@ function enc(t,type) {
     }
 }
 //kinda inefficient
+function crash() {
+    while (1>0) {
+        console.log("crash")
+        crash()
+    }
+}
 </script>
 </html>

@@ -15,32 +15,17 @@ function enc(t,type) {
     var x
     var y = []
     if (type === "e") {
-        for (x in t) {
-            var z = t.charCodeAt(x).toString()
-            if (z.length === 3) {
-                y.push(z[0])
-                y.push(z[1])
-                y.push(z[2])
-            } else if (z.length === 2) {
-                y.push("0")
-                y.push(z[0])
-                y.push(z[1])
-            } else {
-                y.push("0")
-                y.push("0")
-                y.push(z[0])
-            }
+        var a,b=[],stop=false
+        for (a in t) {
+            var n = t.codePointAt(a)
+            if(n/1000>=1){alert("invalid input");stop=true}
+            b.push(...Array(3-n.toString().length).fill("0"),...n.toString().split(""))
         }
-        var w
-        var b = ""
-        for (w in y) {
-            if (parseInt(y[w])+parseInt(w[w.length-1]) >= 10) {
-                b += (parseInt(y[w])+parseInt(w[w.length-1])).toString()[1]
-            } else {
-                b += (parseInt(y[w])+parseInt(w[w.length-1])).toString()[0]
-            }
-        } 
-        return b
+        if(stop)break
+        for (a in b) {
+            b[a] = ((b[a]*1+(a%10))%10).toString()
+        }
+        return b.reduce((a,b)=>a+b)
     } else if (type === "d") {
         if (typeof t === "string") {
             var c = t.split("")
@@ -69,7 +54,7 @@ function enc(t,type) {
             }
             return i
         } else {
-            console.warn = "wrong input"
+            alert("wrong input you  fufcking piece of shit")
         }
     }
 }
